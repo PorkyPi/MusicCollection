@@ -15,6 +15,7 @@ public class AudioFile {
 	private String trackNumberAndPositionInSet;           //TRCK Track number/Position set (7/13)
 	private String partOfSet;                             //TPOS Part(CD) of set(CDs) (2/6) 
 	private short rating;                                 //POPM first
+	private String lyrics;                                //
 	private int playCount;                                //Count of listened
 	private String fileExtension;                         //
 	private Date musicLength;                             //houer:minutes:secunds
@@ -207,6 +208,13 @@ public class AudioFile {
 	public void setFilePath(String filePath) {
 		this.filePath = filePath;
 	}
-
 	
+	public String getLyrics() {
+		return lyrics;
+	}
+
+	public void setLyrics(String lyrics) {
+		this.lyrics = lyrics;
+	}
+
 }
