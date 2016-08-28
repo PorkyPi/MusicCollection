@@ -5,13 +5,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Repository;
 
 import com.mas.entity.AudioFile;
 
-@Service
+@Repository
 public class AudioFileDaoImpl implements AudioFileDao {
 
+	
 	@Override
 	public byte[] readFileFromHardDrive(String filePath) {
 		File file = new File(filePath);
@@ -35,12 +36,10 @@ public class AudioFileDaoImpl implements AudioFileDao {
 
 	@Override
 	public void writeFileToHardDrive(AudioFile audioFile) {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
-	public void saveMetadateToDatabase(AudioFile af) {
-		// TODO Auto-generated method stub
-		
+	public void saveMetadateToDatabase(AudioFile audioFile) {
+		// TODO Auto-generated method stub	
 	}}

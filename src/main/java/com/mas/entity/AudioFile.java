@@ -2,6 +2,9 @@ package com.mas.entity;
 
 import java.sql.Date;
 
+import javax.inject.Named;
+
+@Named
 public class AudioFile {
 	private int audioFileId;
 	private String filePath;                              //Path to the file
@@ -11,21 +14,21 @@ public class AudioFile {
 	private String albumArtist;                           //TPE2 Band/orchestra/accompaniment
 	private String composer;                              //TCOM Composer
 	private byte genre;                                   //Appendix from ID3v1
-	private short year;                                   //TYER Year
+	private String year;                                   //TYER Year
 	private String trackNumberAndPositionInSet;           //TRCK Track number/Position set (7/13)
 	private String partOfSet;                             //TPOS Part(CD) of set(CDs) (2/6) 
-	private short rating;                                 //POPM first
-	private String lyrics;                                //
+	private String rating;                                //POPM first
+	private String lyrics;                                //USLT lyrics
 	private int playCount;                                //Count of listened
-	private String fileExtension;                         //
+	private String fileExtension;                         //extension (.mp3)
 	private Date musicLength;                             //houer:minutes:secunds
 	private float fileSize;                               //mb.kb
-	private short bitRate;                                //                   
+	private short bitRate;                                //bit rate                  
 	private byte samplingFrequency;                       //Sampling rate frequency index 
-	private String versionId3Tag;                         //             
+	private String versionId3Tag;                         //version of Id3Tag           
 	private Date dateСhange;                              //dd.MM.yyyy hh:mm
 	private byte layerDescription;                        //Layer description
-	private byte[] byteArr;                               //
+	private byte[] byteArr;                               //byte array the file
 
 	public AudioFile(){
 	}
@@ -89,11 +92,11 @@ public class AudioFile {
 		this.genre = genre;
 	}
 
-	public short getYear() {
+	public String getYear() {
 		return year;
 	}
 
-	public void setYear(short year) {
+	public void setYear(String year) {
 		this.year = year;
 	}
 
@@ -113,11 +116,11 @@ public class AudioFile {
 		this.partOfSet = partOfSet;
 	}
 
-	public short getRating() {
+	public String getRating() {
 		return rating;
 	}
 
-	public void setRating(short rating) {
+	public void setRating(String rating) {
 		this.rating = rating;
 	}
 
@@ -216,5 +219,13 @@ public class AudioFile {
 	public void setLyrics(String lyrics) {
 		this.lyrics = lyrics;
 	}
-
+	
+	public String toString(){
+		String txt = new String();
+		txt += "Id file: " + this.audioFileId + ". ";
+		txt += "TrackName: " + this.trackName + ". ";
+		txt += "Album: " + this.album + ". ";
+		txt += "AlbumArtist: " + this.albumArtist + ". ";
+		return txt;
+	}
 }

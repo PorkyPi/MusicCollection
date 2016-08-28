@@ -24,11 +24,12 @@ public class AudioFileDaoImplTest {
 	}
 	
 	private byte[] setUpBean(){
+		@SuppressWarnings("resource")
 		GenericXmlApplicationContext ctx = new GenericXmlApplicationContext();
 		ctx.load("beans.xml");
 		ctx.refresh();
 		AudioFileDao afd = ctx.getBean(AudioFileDaoImpl.class);
-		byte[] byteArr = afd.readFileFromHardDrive("D:\\Temp\\01_feder_goodbye_feat_lyse_myzuka.org.mp3");
+		byte[] byteArr = afd.readFileFromHardDrive("D:\\Temp\\0_feder_goodbye_feat_lyse_myzuka.org.mp3");
 		return byteArr;
 	}
 }

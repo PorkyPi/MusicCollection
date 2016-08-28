@@ -9,6 +9,6 @@
 						http://www.springframework.org/schema/context/spring-context.xsd">
     
     <!-- scan -->
-    <context:component-scan base-package="com.mas.dao"/>
+    <context:component-scan base-package="com.mas.dao, com.mas.entity, com.mas.services"/>
 
 </beans>
