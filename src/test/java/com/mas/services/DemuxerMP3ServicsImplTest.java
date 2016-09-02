@@ -11,10 +11,12 @@ public class DemuxerMP3ServicsImplTest {
 		ctx.load("beans.xml");
 		ctx.refresh();
 		
-		DemuxerMP3ServicesImpl dmsi = ctx.getBean(DemuxerMP3ServicesImpl.class);
+		DemuxerMP3ServiceImpl dmsi = ctx.getBean(DemuxerMP3ServiceImpl.class);
 		
-		dmsi.readAllMetadataFromFile("D:\\Temp\\0_feder_goodbye_feat_lyse_myzuka.org.mp3");
+		dmsi.readAllMetadataFromFile("D:\\Temp\\01_imagine_dragons_battle_cry_myzuka.ru.mp3");
+		
 		AudioFile af = dmsi.getAudioFile();
+		System.out.println();
 		System.out.println("File Path: " + af.getFilePath());
 		System.out.println("Track Name: " + af.getTrackName());
 		System.out.println("Contributing Artist: " + af.getContributingArtist());
@@ -28,5 +30,15 @@ public class DemuxerMP3ServicsImplTest {
 		System.out.println("Lyrics: " + af.getLyrics());
 		System.out.println("File extension: " + af.getFileExtension());
 		System.out.println("ID3 version: " + af.getVersionId3Tag());
+		System.out.println("Genre: " + af.getContentType());
+		System.out.println("Comments: " + af.getComments());
+		System.out.println("Text: " + af.getText());
+		System.out.println("Publisher: " + af.getPublisher());
+		System.out.println("MPEG version: " + af.getMpegVersionAsString());
+		System.out.println("Layer description: " + af.getLayerDescriptionAsString());
+		System.out.println("Bit rate: " + af.getBitRate() + "kbps");
+		System.out.println("Frequency: " + af.getFrequencyIndex() + "Hz");
+		System.out.println("Channel mode: " + af.getChannelModeAsString());
+		System.out.println("Duration: " + af.getDurationToString());
 	}
 }

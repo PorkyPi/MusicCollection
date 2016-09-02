@@ -13,22 +13,28 @@ public class AudioFile {
 	private String album;                                 //TALB Album/Movie/Show title
 	private String albumArtist;                           //TPE2 Band/orchestra/accompaniment
 	private String composer;                              //TCOM Composer
-	private byte genre;                                   //Appendix from ID3v1
-	private String year;                                   //TYER Year
+	private String year;                                  //TYER Year
 	private String trackNumberAndPositionInSet;           //TRCK Track number/Position set (7/13)
 	private String partOfSet;                             //TPOS Part(CD) of set(CDs) (2/6) 
 	private String rating;                                //POPM first
 	private String lyrics;                                //USLT lyrics
 	private int playCount;                                //Count of listened
 	private String fileExtension;                         //extension (.mp3)
-	private Date musicLength;                             //houer:minutes:secunds
-	private float fileSize;                               //mb.kb
+	private int duration;                                 //houer:minutes:secunds
+	private long fileSize;                                //
 	private short bitRate;                                //bit rate                  
-	private byte samplingFrequency;                       //Sampling rate frequency index 
+	private int frequencyIndex;                           //Sampling rate frequency index 
 	private String versionId3Tag;                         //version of Id3Tag           
 	private Date dateСhange;                              //dd.MM.yyyy hh:mm
 	private byte layerDescription;                        //Layer description
 	private byte[] byteArr;                               //byte array the file
+	private String comments;                              //COMM
+	private String contentType;                           //TCON remix or cover (genre)
+	private String text;                                  //TEXT The 'Lyricist(s)/Text writer(s)' frame
+	private String publisher;                             //TPUB the name of the label or publisher
+	private byte mpegVersion;                             //MPEG version
+	private byte channelMode;                             //Stereo/Joint stereo/Dual channel (2 mono channel)/Single channel (Mono)
+	
 
 	public AudioFile(){
 	}
@@ -84,14 +90,6 @@ public class AudioFile {
 		this.composer = composer;
 	}
 
-	public byte getGenre() {
-		return genre;
-	}
-
-	public void setGenre(byte genre) {
-		this.genre = genre;
-	}
-
 	public String getYear() {
 		return year;
 	}
@@ -140,36 +138,40 @@ public class AudioFile {
 		this.fileExtension = fileExtension;
 	}
 
-	public Date getMusicLength() {
-		return musicLength;
+	public int getDuration() {
+		return duration;
 	}
 
-	public void setMusicLength(Date musicLength) {
-		this.musicLength = musicLength;
+	public void setDuration(int duration) {
+		this.duration = duration;
+	}
+	
+	public String getDurationToString() {
+		return "" + duration / 60 + "." + duration % 60 + "min";
 	}
 
-	public float getFileSize() {
+	public long getFileSize() {
 		return fileSize;
 	}
 
-	public void setFileSize(float fileSize) {
+	public void setFileSize(long fileSize) {
 		this.fileSize = fileSize;
 	}
 
-	public short getBitRate() {
+	public Short getBitRate() {
 		return bitRate;
 	}
 
-	public void setBitRate(short bitRate) {
+	public void setBitRate(Short bitRate) {
 		this.bitRate = bitRate;
 	}
 
-	public byte getSamplingFrequency() {
-		return samplingFrequency;
+	public int getFrequencyIndex() {
+		return frequencyIndex;
 	}
 
-	public void setSamplingFrequency(byte samplingFrequency) {
-		this.samplingFrequency = samplingFrequency;
+	public void setFrequencyIndex(int frequencyIndex) {
+		this.frequencyIndex = frequencyIndex;
 	}
 
 	public String getVersionId3Tag() {
@@ -196,6 +198,16 @@ public class AudioFile {
 		this.layerDescription = layerDescription;
 	}
 	
+	public String getLayerDescriptionAsString(){
+		switch(this.layerDescription){
+		case 0: return "reserved";
+		case 3: return "Layer 3";
+		case 2: return "Layer 2";
+		case 1: return "Layer 1";
+		}
+		return "Empty";
+	}
+	
 	public byte[] getByteArr() {
 		return byteArr;
 	}
@@ -220,6 +232,74 @@ public class AudioFile {
 		this.lyrics = lyrics;
 	}
 	
+	public String getComments() {
+		return comments;
+	}
+
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+
+	public String getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(String contentType) {
+		this.contentType = contentType;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	public String getPublisher() {
+		return publisher;
+	}
+
+	public void setPublisher(String publisher) {
+		this.publisher = publisher;
+	}
+	
+	public byte getMpegVersion() {
+		return mpegVersion;
+	}
+
+	public void setMpegVersion(byte mpegVersion) {
+		this.mpegVersion = mpegVersion;
+	}
+	
+	public String getMpegVersionAsString(){
+		switch(this.mpegVersion){
+		case 0: return "MPEG Version 2.5 (later extension of MPEG 2)";
+		case 1: return "reserved";
+		case 2: return "MPEG Version 2(ISO/IEC 13818-3)";
+		case 3: return "MPEG Version 1(ISO/IEC 11172-3)";
+		}
+		return "Empty";
+	}
+
+	public byte getChannelMode() {
+		return channelMode;
+	}
+
+	public void setChannelMode(byte chenalMode) {
+		this.channelMode = chenalMode;
+	}
+	
+	public String getChannelModeAsString(){
+		switch(this.channelMode){
+		case 0: return "Stereo";
+		case 1: return "Join stereo (Stereo)";
+		case 2: return "Dual channel (2 mono channels)";
+		case 3: return "Single channel (Mono)";
+		}
+		return "Empty";
+	}
+
 	public String toString(){
 		String txt = new String();
 		txt += "Id file: " + this.audioFileId + ". ";
