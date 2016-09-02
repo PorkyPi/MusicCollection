@@ -5,6 +5,15 @@
 	<artifactId>MyMusicCollection</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
+	<!-- jaudioo -->
+        
+        <repositories>
+		    <repository>
+		        <id>jaudiotagger-repository</id>
+		        <url>https://dl.bintray.com/ijabz/maven</url>
+		    </repository>
+		</repositories>
+		
 	<properties>
 		<!-- Generic properties -->
 		<java.version>1.8</java.version>
@@ -172,7 +181,16 @@
             <artifactId>hibernate-core</artifactId>
             <version>4.1.4.Final</version>
         </dependency>
+        <!-- jaudioo -->
+		
+		<dependency>
+		    <groupId>net.jthink</groupId>
+		    <artifactId>jaudiotagger</artifactId>
+		    <version>2.2.3</version>
+		</dependency>
+		
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>

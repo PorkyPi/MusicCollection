@@ -5,38 +5,37 @@ import java.sql.Date;
 import javax.inject.Named;
 
 @Named
-public class AudioFile {
+public class AudioMetadata {
 	private int audioFileId;
-	private String filePath;                              //Path to the file
-	private String trackName;                             //TIT2 Title/songname/content description
-	private String contributingArtist;                    //TPE1 Lead performer(s)/Soloist(s)
-	private String album;                                 //TALB Album/Movie/Show title
-	private String albumArtist;                           //TPE2 Band/orchestra/accompaniment
-	private String composer;                              //TCOM Composer
-	private String year;                                  //TYER Year
-	private String trackNumberAndPositionInSet;           //TRCK Track number/Position set (7/13)
-	private String partOfSet;                             //TPOS Part(CD) of set(CDs) (2/6) 
-	private String rating;                                //POPM first
-	private String lyrics;                                //USLT lyrics
-	private int playCount;                                //Count of listened
-	private String fileExtension;                         //extension (.mp3)
-	private int duration;                                 //houer:minutes:secunds
+	private String filePath;                              //*Path to the file
+	private String trackName;                             //*TIT2 Title/songname/content description
+	private String contributingArtist;                    //*TPE1 Lead performer(s)/Soloist(s)
+	private String album;                                 //*TALB Album/Movie/Show title
+	private String albumArtist;                           //*TPE2 Band/orchestra/accompaniment
+	private String composer;                              //*TCOM Composer
+	private String year;                                  //*TYER Year
+	private String trackNumberAndPositionInSet;           //*TRCK Track number/Position set (7/13)
+	private String partOfSet;                             //*TPOS Part(CD) of set(CDs) (2/6) 
+	private String rating;                                //*POPM first
+	private String lyrics;                                //*USLT lyrics
+	private int playCount;                                //*Count of listened
+	private String fileExtension;                         //*extension (.mp3)
+	private int duration;                                 //*houer:minutes:secunds
 	private long fileSize;                                //
-	private short bitRate;                                //bit rate                  
-	private int frequencyIndex;                           //Sampling rate frequency index 
-	private String versionId3Tag;                         //version of Id3Tag           
+	private long bitRate;                                 //*bit rate                  
+	private int frequencyIndex;                           //*Sampling rate frequency index 
+	private String versionId3Tag;                         //*version of Id3Tag           
 	private Date dateСhange;                              //dd.MM.yyyy hh:mm
-	private byte layerDescription;                        //Layer description
+	private String layerDescription;                      //*Layer description
 	private byte[] byteArr;                               //byte array the file
-	private String comments;                              //COMM
-	private String contentType;                           //TCON remix or cover (genre)
-	private String text;                                  //TEXT The 'Lyricist(s)/Text writer(s)' frame
-	private String publisher;                             //TPUB the name of the label or publisher
-	private byte mpegVersion;                             //MPEG version
-	private byte channelMode;                             //Stereo/Joint stereo/Dual channel (2 mono channel)/Single channel (Mono)
-	
+	private String comments;                              //*COMM
+	private String contentType;                           //*TCON remix or cover (genre)
+	private String text;                                  //*TEXT The 'Lyricist(s)/Text writer(s)' frame
+	private String publisher;                             //*TPUB the name of the label or publisher
+	private String mpegVersion;                           //*MPEG version
+	private String channelMode;                           //*Stereo/Joint stereo/Dual channel (2 mono channel)/Single channel (Mono)
 
-	public AudioFile(){
+	public AudioMetadata(){
 	}
 	/*
 	 * Getters and setters
@@ -158,11 +157,11 @@ public class AudioFile {
 		this.fileSize = fileSize;
 	}
 
-	public Short getBitRate() {
+	public long getBitRate() {
 		return bitRate;
 	}
 
-	public void setBitRate(Short bitRate) {
+	public void setBitRate(long bitRate) {
 		this.bitRate = bitRate;
 	}
 
@@ -190,22 +189,12 @@ public class AudioFile {
 		this.dateСhange = dateСhange;
 	}
 
-	public byte getLayerDescription() {
+	public String getLayerDescription() {
 		return layerDescription;
 	}
 
-	public void setLayerDescription(byte layerDescription) {
+	public void setLayerDescription(String layerDescription) {
 		this.layerDescription = layerDescription;
-	}
-	
-	public String getLayerDescriptionAsString(){
-		switch(this.layerDescription){
-		case 0: return "reserved";
-		case 3: return "Layer 3";
-		case 2: return "Layer 2";
-		case 1: return "Layer 1";
-		}
-		return "Empty";
 	}
 	
 	public byte[] getByteArr() {
@@ -264,42 +253,22 @@ public class AudioFile {
 		this.publisher = publisher;
 	}
 	
-	public byte getMpegVersion() {
+	public String getMpegVersion() {
 		return mpegVersion;
 	}
 
-	public void setMpegVersion(byte mpegVersion) {
+	public void setMpegVersion(String mpegVersion) {
 		this.mpegVersion = mpegVersion;
 	}
 	
-	public String getMpegVersionAsString(){
-		switch(this.mpegVersion){
-		case 0: return "MPEG Version 2.5 (later extension of MPEG 2)";
-		case 1: return "reserved";
-		case 2: return "MPEG Version 2(ISO/IEC 13818-3)";
-		case 3: return "MPEG Version 1(ISO/IEC 11172-3)";
-		}
-		return "Empty";
-	}
-
-	public byte getChannelMode() {
+	public String getChannelMode() {
 		return channelMode;
 	}
 
-	public void setChannelMode(byte chenalMode) {
+	public void setChannelMode(String chenalMode) {
 		this.channelMode = chenalMode;
 	}
 	
-	public String getChannelModeAsString(){
-		switch(this.channelMode){
-		case 0: return "Stereo";
-		case 1: return "Join stereo (Stereo)";
-		case 2: return "Dual channel (2 mono channels)";
-		case 3: return "Single channel (Mono)";
-		}
-		return "Empty";
-	}
-
 	public String toString(){
 		String txt = new String();
 		txt += "Id file: " + this.audioFileId + ". ";
