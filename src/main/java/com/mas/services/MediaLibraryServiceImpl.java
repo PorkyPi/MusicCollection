@@ -1,9 +1,10 @@
 package com.mas.services;
 
 import java.io.File;
+import java.util.LinkedList;
 
 public class MediaLibraryServiceImpl implements MediaLibraryService  {
-	private StackFiles sk; 
+	private StackFiles sk;
 	
 	@Override
 	public void bypassCatalogTree(String nodePath){
@@ -12,7 +13,6 @@ public class MediaLibraryServiceImpl implements MediaLibraryService  {
 		
 		while(sk.getElement() != null){
 			if(f.isDirectory()){
-				//System.out.println("Directory: " + f.getPath());
 				for(File file: f.listFiles()){
 					sk.push(file.getPath());
 				}
@@ -21,6 +21,35 @@ public class MediaLibraryServiceImpl implements MediaLibraryService  {
 				System.out.println("File: " + f.getPath());
 				f = new File(sk.pop());
 			}
+		}
+	}
+	
+	public class StackFiles {
+		private LinkedList<String> list;
+		
+		public StackFiles(String startPath){
+			list = new LinkedList<String>();
+			list.addLast(startPath);
+		}
+		
+		public void push(String path){
+			this.list.addLast(path);
+		}
+		
+		public String pop(){
+			if(this.list.isEmpty()){
+				return null;
+			}
+			String f = this.list.getLast();
+			this.list.removeLast();
+			return f;
+		}
+		
+		public String getElement(){
+			if(this.list.isEmpty()){
+				return null;
+			}
+			return list.getLast();
 		}
 	}
 }

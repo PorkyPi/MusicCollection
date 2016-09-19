@@ -1,0 +1,32 @@
+﻿DROP TABLE IF EXISTS audio_metadata; 
+
+CREATE TABLE audio_metadata(
+       id INTEGER PRIMARY KEY,
+       file_path NVARCHAR(10000),
+       track_name VARCHAR,
+       contributing_artist VARCHAR,
+       album VARCHAR,
+       album_artist VARCHAR,
+       composer VARCHAR,
+       track_year VARCHAR,
+       track_number_position VARCHAR,
+       part_of_set VARCHAR,
+       rating VARCHAR,
+       lyrics VARCHAR,
+       play_count INTEGER DEFAULT 0,
+       file_extension VARCHAR,
+       duration INTEGER,
+       file_size BIGINT,
+       bit_rate INTEGER,
+       frequency_index BIGINT,
+       version_id3_tag VARCHAR,
+       date_change DATE,
+       layer_descriptio VARCHAR,
+       comments VARCHAR,
+       content_type VARCHAR,
+       track_text VARCHAR,
+       publisher VARCHAR,
+       mpeg_version VARCHAR,
+       channel_mode VARCHAR,
+       parent_folder VARCHAR
+);

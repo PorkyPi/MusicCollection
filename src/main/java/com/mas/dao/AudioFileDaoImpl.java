@@ -5,6 +5,13 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.jaudiotagger.audio.AudioFile;
 import org.jaudiotagger.audio.AudioFileIO;
@@ -12,13 +19,17 @@ import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.TagException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mas.entity.AudioMetadata;
 
 @Repository
 public class AudioFileDaoImpl implements AudioFileDao {
-
+	
+	@PersistenceContext
+	private EntityManager em = null;
 	
 	@Override
 	public byte[] readFileFromHardDrive(String filePath) {
@@ -42,11 +53,6 @@ public class AudioFileDaoImpl implements AudioFileDao {
 	}
 
 	@Override
-	public void saveMetadateToDatabase(AudioMetadata audioFile) {
-		// TODO Auto-generated method stub	
-	}
-
-	@Override
 	public AudioFile readTagContainer(String filePath){
 		File f = new File(filePath);
 		try {
@@ -57,4 +63,19 @@ public class AudioFileDaoImpl implements AudioFileDao {
 			e.printStackTrace();
 		}
 		return null;
-	}}
+	}
+
+	@Override
+	public List<AudioMetadata> getAllAudioMetadatas() {
+		TypedQuery<AudioMetadata> query = em.createQuery("SELECT b FROM AUDIO_METADATA b", AudioMetadata.class);
+		return query.getResultList();
+	}
+	
+	@Transactional
+	@Override
+	public void updateAudioMetadata(AudioMetadata audioMetadata) {
+		if(em.find(AudioMetadata.class, audioMetadata.getAudioFileId()) != null){;
+			em.merge(audioMetadata);
+		}
+	}
+}

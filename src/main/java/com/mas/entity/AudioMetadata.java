@@ -3,37 +3,106 @@ package com.mas.entity;
 import java.sql.Date;
 
 import javax.inject.Named;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Named
+@Entity
+@Table(name="AUDIO_METADATA")
 public class AudioMetadata {
-	private int audioFileId;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="AUDIO_FILE_ID")
+	private long audioFileId;
+	
+	@Column(name="FILE_PATH")
 	private String filePath;                              //*Path to the file
+	
+	@Column(name="TRACK_NAME")
 	private String trackName;                             //*TIT2 Title/songname/content description
+	
+	@Column(name="CONTRIBUTING_ARTIST")
 	private String contributingArtist;                    //*TPE1 Lead performer(s)/Soloist(s)
+	
+	@Column(name="ALBUM")
 	private String album;                                 //*TALB Album/Movie/Show title
+	
+	@Column(name="ALBUM_ARTIST")
 	private String albumArtist;                           //*TPE2 Band/orchestra/accompaniment
+	
+	@Column(name="COMPOSER")
 	private String composer;                              //*TCOM Composer
+	
+	@Column(name="YEAR")
 	private String year;                                  //*TYER Year
+	
+	@Column(name="TRACK_NUMBER_AND_POSITION")
 	private String trackNumberAndPositionInSet;           //*TRCK Track number/Position set (7/13)
-	private String partOfSet;                             //*TPOS Part(CD) of set(CDs) (2/6) 
+	
+	@Column(name="PART_OF_SET")
+	private String partOfSet;                             //*TPOS Part(CD) of set(CDs) (2/6)
+	
+	@Column(name="RATING")
 	private String rating;                                //*POPM first
+	
+	@Column(name="LYRICS")
 	private String lyrics;                                //*USLT lyrics
+	
+	@Column(name="PLAY_COUNT")
 	private int playCount;                                //*Count of listened
+	
+	@Column(name="FILE_EXTENSION")
 	private String fileExtension;                         //*extension (.mp3)
+	
+	@Column(name="DURATION")
 	private int duration;                                 //*houer:minutes:secunds
+	
+	@Column(name="FILE_SIZE")
 	private long fileSize;                                //
-	private long bitRate;                                 //*bit rate                  
-	private int frequencyIndex;                           //*Sampling rate frequency index 
-	private String versionId3Tag;                         //*version of Id3Tag           
+	
+	@Column(name="BITRATE")
+	private long bitRate;                                 //*bit rate
+	
+	@Column(name="FREQUENCY_INDEX")
+	private int frequencyIndex;                           //*Sampling rate frequency index
+	
+	@Column(name="VERSION_ID3_TAG")
+	private String versionId3Tag;                         //*version of Id3Tag
+	
+	@Column(name="DATE_CHANGE")
 	private Date dateСhange;                              //dd.MM.yyyy hh:mm
+	
+	@Column(name="LAYER_DESCRIPTION")
 	private String layerDescription;                      //*Layer description
+	
+
 	private byte[] byteArr;                               //byte array the file
+	
+	@Column(name="COMMENTS")
 	private String comments;                              //*COMM
+	
+	@Column(name="CONTENT_TYPE")
 	private String contentType;                           //*TCON remix or cover (genre)
+	
+	@Column(name="TEXT")
 	private String text;                                  //*TEXT The 'Lyricist(s)/Text writer(s)' frame
+	
+	@Column(name="PUBLISHER")
 	private String publisher;                             //*TPUB the name of the label or publisher
+	
+	@Column(name="MPEG_VERSION")
 	private String mpegVersion;                           //*MPEG version
+	
+	@Column(name="CHANEL_MODE")
 	private String channelMode;                           //*Stereo/Joint stereo/Dual channel (2 mono channel)/Single channel (Mono)
+	
+	@Column(name="PARENT_FOLDER")
+	private int parentFolder; 
 
 	public AudioMetadata(){
 	}
@@ -41,11 +110,11 @@ public class AudioMetadata {
 	 * Getters and setters
 	 */
 	
-	public int getAudioFileId() {
+	public long getAudioFileId() {
 		return audioFileId;
 	}
 
-	public void setAudioFileId(int audioFileId) {
+	public void setAudioFileId(long audioFileId) {
 		this.audioFileId = audioFileId;
 	}
 
@@ -269,6 +338,22 @@ public class AudioMetadata {
 		this.channelMode = chenalMode;
 	}
 	
+	public int getFolderAncestor() {
+		return parentFolder;
+	}
+
+	public void setFolderAncestor(int folderAncestor) {
+		this.parentFolder = folderAncestor;
+	}
+	
+	public int getParentFolder() {
+		return parentFolder;
+	}
+
+	public void setParentFolder(int parentFolder) {
+		this.parentFolder = parentFolder;
+	}
+	
 	public String toString(){
 		String txt = new String();
 		txt += "Id file: " + this.audioFileId + ". ";
@@ -277,4 +362,5 @@ public class AudioMetadata {
 		txt += "AlbumArtist: " + this.albumArtist + ". ";
 		return txt;
 	}
+
 }

@@ -1,19 +1,38 @@
 package com.mas.entity;
 
-import javax.inject.Named;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-@Named
+@Entity
+@Table(name = "CATALOGS")
 public class Catalog {
-	private int catalogId;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="CATALOG_ID")
+	private long catalogId;
+	
+	@Column(name="FOLDER_NAME")
 	private String folderName;
-	private int purpose;
+	
+	@Column(name="PURPOSE")
+	private int purpose;                                 //album/singer/playlist
+	
+	@Column(name="PARENT_FOLDER")
 	private int parentFolder;
+	
+	@Column(name="PATH_TO_IMAGE")
 	private String pathToImage;
 	
-	public int getCatalogId() {
+	
+	public long getCatalogId() {
 		return catalogId;
 	}
-	public void setCatalogId(int catalogId) {
+	public void setCatalogId(long catalogId) {
 		this.catalogId = catalogId;
 	}
 	public String getFolderName() {
