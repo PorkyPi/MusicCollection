@@ -1,0 +1,2 @@
+C:\Users\админ\workspace\MyMusicCollection\db\sqlite\MusicDB.db
+SELECT id, folder_name, path_to_image FROM folder;
