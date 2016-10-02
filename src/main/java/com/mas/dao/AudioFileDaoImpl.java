@@ -7,10 +7,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import org.jaudiotagger.audio.AudioFile;
@@ -19,16 +16,10 @@ import org.jaudiotagger.audio.exceptions.CannotReadException;
 import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
 import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.TagException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.mas.entity.AudioMetadata;
 
-@Repository
 public class AudioFileDaoImpl implements AudioFileDao {
 	
-	@PersistenceContext
 	private EntityManager em = null;
 	
 	@Override
@@ -71,7 +62,7 @@ public class AudioFileDaoImpl implements AudioFileDao {
 		return query.getResultList();
 	}
 	
-	@Transactional
+	
 	@Override
 	public void updateAudioMetadata(AudioMetadata audioMetadata) {
 		if(em.find(AudioMetadata.class, audioMetadata.getAudioFileId()) != null){;

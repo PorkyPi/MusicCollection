@@ -1,4 +1,4 @@
-package com.mas.jdbc;
+package com.mas.jdbcDrivers;
 
 public class SprObject {
 	

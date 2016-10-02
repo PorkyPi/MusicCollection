@@ -1,4 +1,4 @@
-package com.mas.jdbc;
+package com.mas.jdbcDrivers;
 
 import java.sql.Connection;
 import java.sql.Driver;
@@ -14,6 +14,10 @@ import java.util.logging.Logger;
 public class DBUtils {
 	
 	private static Connection con;
+	
+	public DBUtils(){
+		
+	}
 	
 	public static void openConnection(String path) {
 		try {
@@ -73,4 +77,14 @@ public class DBUtils {
 			Logger.getLogger(DBUtils.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
+
+	public static Connection getCon() {
+		return con;
+	}
+
+	public static void setCon(Connection con) {
+		DBUtils.con = con;
+	}
+	
+	
 }
